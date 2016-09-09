@@ -6,6 +6,7 @@ public class HandleTouch : MonoBehaviour {
     public int rotationSpeed = 1;
 
     bool isMatched = false;
+    bool isFlipped = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,15 +20,24 @@ public class HandleTouch : MonoBehaviour {
 
     void OnMouseDown() {
         // animate flip
-        StartCoroutine(animateFlip());
+        if (!isFlipped) {
+            isFlipped = true;
+            StartCoroutine(animateFlip(false));
+        }
 
         // TODO: handle logic and play vibration
     }
 
-    IEnumerator animateFlip() {
+    public void unFlip() {
+        StartCoroutine(animateFlip(true));
+    }
+
+    IEnumerator animateFlip(bool unflip) {
 		for (int i = 0; i < 180; i += rotationSpeed) {
 			gameObject.transform.Rotate (new Vector3 (0, rotationSpeed, 0));
             yield return null;
 		}
+        if (unflip)
+            isFlipped = false;
 	}
 }

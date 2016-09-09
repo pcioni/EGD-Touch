@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f10782c5453fc4b8c47c12b9e7b73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 6, y: 6}
+  size: {x: 6, y: 4}
   card: {fileID: 0}
 --- !u!1 &1281877010
 GameObject:
