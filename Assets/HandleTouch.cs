@@ -23,10 +23,10 @@ public class HandleTouch : MonoBehaviour {
         if (!isFlipped) {
             isFlipped = true;
             StartCoroutine(animateFlip(false));
-			print ("touched the card with letter " + GetComponent<Card> ().letter);
+            print("touched the card with letter " + GetComponent<Card>().letter);
         }
 
-        // TODO: handle logic and play vibration
+        // TODO: handle logic
     }
 
     public void unFlip() {
@@ -34,10 +34,25 @@ public class HandleTouch : MonoBehaviour {
     }
 
     IEnumerator animateFlip(bool unflip) {
+
+        // The first time we flip over a card, play the pattern associated
+        if (!unflip) {
+            long[] pattern = { 0, 200, 200, 600 }; // code pattern goes here
+
+            if (Vibration.HasVibrator()) {
+                // stop any currently playing vibrations
+                Vibration.Cancel();
+                Vibration.Vibrate(pattern, -1);
+            }
+        }
+        
+        // animate the card rotation
 		for (int i = 0; i < 180; i += rotationSpeed) {
 			gameObject.transform.Rotate (new Vector3 (0, rotationSpeed, 0));
             yield return null;
 		}
+
+        // and set back to unflipped status
         if (unflip)
             isFlipped = false;
 	}

@@ -31,7 +31,11 @@ public static class Vibration
 			Handheld.Vibrate();
 	}
 
-	public static void Vibrate(long[] pattern, int repeat)
+    /***
+     *  long[] pattern: an array of longs of times to vibrate - [timeOff, timeOn, timeOff, timeOn, ... ]
+     *  int repeat: the index into pattern at which to repeat, or -1 if you don't want to repeat.
+     */
+    public static void Vibrate(long[] pattern, int repeat)
 	{
 		if (isAndroid())
 			vibrator.Call("vibrate", pattern, repeat);
@@ -59,3 +63,5 @@ public static class Vibration
 		#endif
 	}
 }
+ 
+ 
