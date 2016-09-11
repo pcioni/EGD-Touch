@@ -23,6 +23,7 @@ public class HandleTouch : MonoBehaviour {
         if (!isFlipped) {
             isFlipped = true;
             StartCoroutine(animateFlip(false));
+			print ("touched the card with letter " + GetComponent<Card> ().letter);
         }
 
         // TODO: handle logic and play vibration
