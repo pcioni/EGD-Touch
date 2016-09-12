@@ -10,7 +10,7 @@ public class GenerateLevel : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	public void Generate () {
 
 		//Calculates the proper sizing of the board spawns all of the cards in their proper locations.
 
