@@ -10,7 +10,7 @@ public class GenerateLevel : MonoBehaviour {
 
 
 	// Use this for initialization
-	public void Generate () {
+	public int Generate () {
 
 		//Calculates the proper sizing of the board spawns all of the cards in their proper locations.
 
@@ -46,6 +46,7 @@ public class GenerateLevel : MonoBehaviour {
 			print("assigning two cards the letter " + letters[x/2]);
 		}
 
+		return cards.Count;
 
 	}
 

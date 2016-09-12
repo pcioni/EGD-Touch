@@ -8,15 +8,28 @@ public class GameManager : MonoBehaviour {
     public GameObject startButton;
     private GenerateLevel levelGenerator;
 
+	public Card current_card;
+	int cards_left;
+
     void Start() {
         levelGenerator = GetComponent<GenerateLevel>();
     }
 
     void StartGame() {
         Debug.Log("Starting game from button press...");
-        levelGenerator.Generate();
+        cards_left = levelGenerator.Generate();
         TitleGUI_Disable();
+		current_card = null;
     }
+
+	public void found_pair(){
+		Debug.Log ("You found a match!");
+		cards_left -= 2;
+		if (cards_left <= 0) {
+			ReturnToTitle ();
+			Debug.Log ("You matched all the cards!");
+		}
+	}
 
     void ReturnToTitle() {
         
