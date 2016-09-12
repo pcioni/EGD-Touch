@@ -32,6 +32,6 @@ public static class MorseCode {
 	static long[] Z = { 0, 3, 1, 3, 1, 1, 1, 1}; //dash dash dot dot
 
 	public static long[] GetPattern(char letter){
-
+        return null;
 	}
 }

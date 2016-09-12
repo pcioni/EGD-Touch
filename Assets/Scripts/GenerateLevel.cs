@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,9 +9,13 @@ public class GenerateLevel : MonoBehaviour {
 	GameObject card;
 	List<GameObject> cards;
 
+    public void setSize(String length, String width) {
+        size[0] = Int32.Parse(length);
+        size[1] = Int32.Parse(width);
+    }
 
-	// Use this for initialization
-	public void Generate () {
+    // Use this for initialization
+    public void Generate () {
 
 		//Calculates the proper sizing of the board spawns all of the cards in their proper locations.
 
