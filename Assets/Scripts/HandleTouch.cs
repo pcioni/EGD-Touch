@@ -8,17 +8,19 @@ public class HandleTouch : MonoBehaviour {
     bool isMatched = false;
     bool isFlipped = false;
 
+	GameManager manager;
+
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
+		manager = FindObjectOfType<GameManager> ();
 	}
 
     void OnMouseDown() {
+
+		if (isMatched) {
+			return;
+		}
+
         // animate flip
         if (!isFlipped) {
             isFlipped = true;
@@ -26,8 +28,23 @@ public class HandleTouch : MonoBehaviour {
             print("touched the card with letter " + GetComponent<Card>().letter);
         }
 
-        // TODO: handle logic
-    }
+		if (manager.current_card == null) {
+			manager.current_card = GetComponent<Card> ();
+		} 
+		else {
+			if (GetComponent<Card> ().letter == manager.current_card.letter) {
+				isMatched = true;
+				manager.current_card.GetComponent<HandleTouch> ().isMatched = true;
+				manager.current_card = null;
+				manager.found_pair ();
+			} 
+			else {
+				unFlip ();
+				manager.current_card.GetComponent<HandleTouch> ().unFlip ();
+				manager.current_card = null;
+			}
+		}
+	}
 
     public void unFlip() {
         StartCoroutine(animateFlip(true));
@@ -36,15 +53,18 @@ public class HandleTouch : MonoBehaviour {
     IEnumerator animateFlip(bool unflip) {
 
         // The first time we flip over a card, play the pattern associated
-        if (!unflip) {
-			long[] pattern = MorseCode.A; // code pattern goes here
+		if (!unflip) {
+			long[] pattern = MorseCode.GetPattern (GetComponent<Card> ().letter); // code pattern goes here
 
-            if (Vibration.HasVibrator()) {
-                // stop any currently playing vibrations
-                Vibration.Cancel();
-                Vibration.Vibrate(pattern, -1);
-            }
-        }
+			if (Vibration.HasVibrator ()) {
+				// stop any currently playing vibrations
+				Vibration.Cancel ();
+				Vibration.Vibrate (pattern, -1);
+			}
+		} else {
+			yield return new WaitForSeconds (rotationSpeed / 2);
+			Debug.Log ("Sorry, that wasn't a match.");
+		}
         
         // animate the card rotation
 		for (int i = 0; i < 180; i += rotationSpeed) {
