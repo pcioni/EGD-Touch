@@ -37,7 +37,7 @@ public class HandleTouch : MonoBehaviour {
 
         // The first time we flip over a card, play the pattern associated
         if (!unflip) {
-            long[] pattern = { 0, 200, 200, 600 }; // code pattern goes here
+			long[] pattern = MorseCode.A; // code pattern goes here
 
             if (Vibration.HasVibrator()) {
                 // stop any currently playing vibrations
