@@ -4,9 +4,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public Text titleText;
-    public GameObject startButton;
+    public GameObject[] GUI;
     private GenerateLevel levelGenerator;
+
+    public Text lengthInput;
+    public Text widthInput;
 
 	public Card current_card;
 	int cards_left;
@@ -17,8 +19,9 @@ public class GameManager : MonoBehaviour {
 
     void StartGame() {
         Debug.Log("Starting game from button press...");
+        levelGenerator.setSize(lengthInput.text, widthInput.text);
         cards_left = levelGenerator.Generate();
-        TitleGUI_Disable();
+        TitleGUI_Disable(); 
 		current_card = null;
     }
 
@@ -36,13 +39,15 @@ public class GameManager : MonoBehaviour {
     }
 
     void TitleGUI_Disable() {
-        titleText.enabled = false;
-        startButton.SetActive(false);
+        foreach (GameObject go in GUI) {
+            go.SetActive(false);
+        }
     }
 
     void TitleGUI_Enable() {
-        titleText.enabled = true;
-        startButton.SetActive(false);
+        foreach (GameObject go in GUI) {
+            go.SetActive(true);
+        }
     }
 
 }
