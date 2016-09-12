@@ -125,6 +125,7 @@ MonoBehaviour:
   - {fileID: 1075651824}
   lengthInput: {fileID: 625771428}
   widthInput: {fileID: 1569839330}
+  current_card: {fileID: 0}
 --- !u!224 &60874895
 RectTransform:
   m_ObjectHideFlags: 0
