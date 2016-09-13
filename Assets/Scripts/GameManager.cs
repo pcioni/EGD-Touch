@@ -10,10 +10,16 @@ public class GameManager : MonoBehaviour {
     public Text lengthInput;
     public Text widthInput;
 
+    public GameObject dictionary;
+    public bool dictionaryOpened;
+
 	public Card current_card;
 	int cards_left;
 
     void Start() {
+        dictionary = GameObject.Find("Dictionary");
+        dictionaryOpened = false;
+        dictionary.SetActive(dictionaryOpened);
         levelGenerator = GetComponent<GenerateLevel>();
     }
 
@@ -24,8 +30,12 @@ public class GameManager : MonoBehaviour {
         TitleGUI_Disable(); 
 		current_card = null;
     }
-
-	public void found_pair(){
+    void toggleDictionary()
+    {
+        dictionaryOpened = !dictionaryOpened;
+        dictionary.SetActive(dictionaryOpened);
+    }
+    public void found_pair(){
 		Debug.Log ("You found a match!");
 		cards_left -= 2;
 		if (cards_left <= 0) {
