@@ -40,11 +40,8 @@ public class HandleTouch : MonoBehaviour {
                 
                 a = manager.current_card;
                 b = GetComponent<Card> ();
-                Debug.Log(b.letter);
                 b.setLetterSprite();
                 a.setLetterSprite();
-              //  b.setLetterSprite();
-            //    b = null;
                 manager.current_card = null;
 				manager.found_pair ();
 
