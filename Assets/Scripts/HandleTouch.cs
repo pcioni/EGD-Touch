@@ -35,9 +35,20 @@ public class HandleTouch : MonoBehaviour {
 			if (GetComponent<Card> ().letter == manager.current_card.letter) {
 				isMatched = true;
 				manager.current_card.GetComponent<HandleTouch> ().isMatched = true;
-				manager.current_card = null;
+
+                Card a, b;
+                
+                a = manager.current_card;
+                b = GetComponent<Card> ();
+                Debug.Log(b.letter);
+                b.setLetterSprite();
+                a.setLetterSprite();
+              //  b.setLetterSprite();
+            //    b = null;
+                manager.current_card = null;
 				manager.found_pair ();
-			} 
+
+            } 
 			else {
 				unFlip ();
 				manager.current_card.GetComponent<HandleTouch> ().unFlip ();
