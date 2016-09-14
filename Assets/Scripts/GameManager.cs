@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 	public Card current_card;
 	int cards_left;
 
-    void Start() {
+    void Awake() {
         dictionary = GameObject.Find("Dictionary");
         dictionaryOpened = false;
         dictionary.SetActive(dictionaryOpened);
@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour {
 	}
 
     void ReturnToTitle() {
-        
+        //just reloads the scene. Use Awake to reset variables, unlike Start.
+        Application.LoadLevel(0);
     }
 
     void TitleGUI_Disable() {
