@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public GameObject dictionary;
     public bool dictionaryOpened;
 
+    public GameObject restartButton;
+
 	public Card current_card;
 	int cards_left;
 
@@ -34,10 +36,11 @@ public class GameManager : MonoBehaviour {
         TitleGUI_Disable(); 
 		current_card = null;
     }
-    void toggleDictionary()
+    void toggleInfo()
     {
         dictionaryOpened = !dictionaryOpened;
         dictionary.SetActive(dictionaryOpened);
+        restartButton.SetActive( !restartButton.activeSelf );
     }
     public void found_pair(){
 		Debug.Log ("You found a match!");
