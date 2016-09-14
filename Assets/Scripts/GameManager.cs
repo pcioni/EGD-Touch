@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartGame() {
+        if (lengthInput.text == "1" && widthInput.text == "1") {
+            Debug.Log("Invalid width or length (values of 1)");
+            return;
+        }
         Debug.Log("Starting game from button press...");
         levelGenerator.setSize(lengthInput.text, widthInput.text);
         cards_left = levelGenerator.Generate();
@@ -44,7 +48,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-    void ReturnToTitle() {
+    public void ReturnToTitle() {
         //just reloads the scene. Use Awake to reset variables, unlike Start.
         Application.LoadLevel(0);
     }
