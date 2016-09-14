@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 3
+  dotVibrationLength: 200
 --- !u!114 &114000014146485668
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/CardGeneration.unity
+    path: Assets/Scenes/Title.unity
   - enabled: 1
-    path: Assets/UI.unity
+    path: Assets/Scenes/CardGeneration.unity
+  - enabled: 1
+    path: Assets/Scenes/UI.unity

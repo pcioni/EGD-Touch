@@ -4,6 +4,7 @@ using System.Collections;
 public class HandleTouch : MonoBehaviour {
 
     public int rotationSpeed = 1;
+    public long dotVibrationLength = 30;    // ms
 
     bool isMatched = false;
     bool isFlipped = false;
@@ -63,12 +64,16 @@ public class HandleTouch : MonoBehaviour {
         // The first time we flip over a card, play the pattern associated
 		if (!unflip) {
 			long[] pattern = MorseCode.GetPattern (GetComponent<Card> ().letter); // code pattern goes here
+            long[] msPattern = new long[pattern.Length];
 
-			if (Vibration.HasVibrator ()) {
-				// stop any currently playing vibrations
-				Vibration.Cancel ();
-				Vibration.Vibrate (pattern, -1);
-			}
+            for (int i = 0; i < pattern.Length; i++)
+            {
+                msPattern[i] = pattern[i] * dotVibrationLength;
+            }
+
+            // stop any currently playing vibrations
+            Vibration.Cancel ();
+            Vibration.Vibrate (msPattern, -1);
 		} else {
 			yield return new WaitForSeconds (rotationSpeed / 2);
 			Debug.Log ("Sorry, that wasn't a match.");

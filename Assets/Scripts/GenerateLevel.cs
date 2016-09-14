@@ -8,7 +8,6 @@ public class GenerateLevel : MonoBehaviour {
 	public Vector2 size;
 	GameObject card;
 	List<GameObject> cards;
-
     public void setSize(String length, String width) {
         size[0] = Int32.Parse(length);
         size[1] = Int32.Parse(width);
