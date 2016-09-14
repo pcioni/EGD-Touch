@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour {
 
     public void ReturnToTitle() {
         //just reloads the scene. Use Awake to reset variables, unlike Start.
-        Application.LoadLevel(0);
+        SceneManager.LoadScene("Title");
     }
 
     void TitleGUI_Disable() {
